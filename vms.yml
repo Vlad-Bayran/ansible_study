@@ -1,0 +1,10 @@
+vm:
+  hosts:
+    clone_1Test:
+      vm_name: "Clon1Test"
+      
+    clone_2Test:
+      vm_name: "Clon2Test"
+
+    clone_3Test:
+      vm_name: "Clon3Test"

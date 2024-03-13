@@ -1,0 +1,25 @@
+---
+# create-cloud-vm.yml
+
+- name: 'Deploy our Cloud-init VMs'
+  hosts: localhost
+  vars_files:
+    - vms.yml  # Загрузка переменных из файла vms.yml
+  tasks:
+    - name: Clone VM
+      community.general.proxmox_kvm:
+        node: pve5
+        vmid: 496
+        clone: astra-174-tmpl-pve5
+        name: "{{ item.value.vm_name }}"
+        api_user: bayranvv@pve
+        api_token_id: ansibletest
+        api_token_secret: f6c298a1-e9d7-4cd4-8508-e19e8020a830
+        api_host: 172.16.254.15
+        #storage: VM-Storage-5
+        full: false
+        format: unspecified
+        pool: bayran-test	
+        timeout: 900
+
+      with_dict: "{{ vm.hosts }}"
